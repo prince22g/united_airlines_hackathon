@@ -68,3 +68,29 @@ You're ready to submit. Just run through this final checklist.
 4.  **Zip Everything:** Combine the PDF, CSV, and code files into a single ZIP folder. Double-check the name and size limits.
 
 Congratulations on completing this challenging hackathon problem from start to finish!
+That's an excellent question. The process of deciding the weights is the most critical step in building a transparent and defensible scoring model. It's where you translate your analytical insights into a business tool.
+
+The weights were not chosen randomly; they were decided based on the evidence you uncovered during your Exploratory Data Analysis (EDA). You assigned higher weights to the factors that your analysis proved had the strongest impact on operational difficulty and delays.
+
+Here is a breakdown of the logic, which is also reflected in your readme.md presentation guide:
+
+The Rationale Behind the Weights
+Think of your weights as being distributed across three tiers of importance:
+
+1. Primary Drivers (Highest Weights)
+   ground_time_pressure: 0.30 (30%)
+   Reasoning: Your EDA revealed this was the most significant proactive indicator of difficulty. You found that hundreds of flights were scheduled with a time deficit before the day even began. This is a direct, physical constraint on the operation, making it the most important factor.
+   transfer_bag_ratio: 0.20 (20%)
+   Reasoning: Your analysis showed that ORD is a major transfer hub and that transfer bags are inherently more complex to handle than origin bags. A high proportion of these bags puts significant strain on baggage crews and is a major risk for delays, justifying its high weight.
+2. Secondary Drivers (Medium Weights)
+   passenger_load_factor: 0.15 (15%)
+   Reasoning: Your analysis showed that the correlation between load factor and delay was weak on its own. However, a full flight is still undeniably more complex than an empty one (more people to board, more carry-ons). It's a contributing factor, but not a primary driver, so it gets a moderate weight.
+   ssr_count: 0.15 (15%)
+   Reasoning: Your controlled analysis proved that a high number of Special Service Requests (SSRs) leads to greater delays, even after accounting for how full the flight is. This confirmed it as an independent driver of complexity related to passenger needs, earning it a solid medium weight.
+3. Supporting Drivers (Lowest Weights)
+   hot_transfer: 0.10 (10%)
+   Reasoning: This is a more specific version of the transfer bag issue. While important, it's a subset of the overall baggage complexity. It gets a distinct weight to flag these time-critical bags but is less impactful than the overall ratio.
+   child_count & lap_child_count: 0.05 + 0.05 = 0.10 (10% total)
+   Reasoning: These features are excellent proxies for the presence of young families who may require more time and assistance during boarding. They add valuable nuance to the score but are less impactful on a macro level than major constraints like ground time.
+   In summary, you told a story with your weights: "The biggest problems are time and bags. The next biggest problems are the needs of the people on board. Everything else adds a little extra complexity." This data-driven approach is what makes your model so effective.
+   "Our model identified St. Louis as the most consistently difficult destination. We investigated why, and found that these flights have 51% less ground time and 50% more transfer bags than average..."
