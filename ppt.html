@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>United Airlines Flight Difficulty Score</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        overflow: hidden;
+      }
+      .slide-container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch; /* for smooth scrolling on iOS */
+      }
+      .slide {
+        width: 100vw;
+        height: 100vh;
+        flex-shrink: 0;
+        scroll-snap-align: start;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 4rem 6rem;
+        position: relative;
+        box-sizing: border-box;
+      }
+      @media (max-width: 768px) {
+        .slide {
+          padding: 2rem;
+        }
+      }
+      .slide-content {
+        width: 100%;
+        max-width: 1200px;
+      }
+      .table-header {
+        background-color: #002244; /* United Dark Blue */
+        color: white;
+      }
+      .table-cell {
+        border: 1px solid #e2e8f0;
+        padding: 0.75rem 1rem;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100">
+    <div id="slideContainer" class="slide-container">
+      <!-- Slide 1: Title Slide -->
+      <div class="slide bg-gradient-to-br from-blue-900 to-sky-700 text-white">
+        <div class="slide-content text-center">
+          <h1
+            class="text-6xl md:text-7xl font-black tracking-tight leading-tight"
+          >
+            A Data-Driven Flight Difficulty Score
+          </h1>
+          <p class="mt-6 text-2xl md:text-3xl font-light text-sky-200">
+            Enhancing Operational Efficiency at ORD
+          </p>
+          <div class="mt-12 border-t border-sky-400 w-1/4 mx-auto"></div>
+          <p class="mt-8 text-lg">United Airlines Hackathon Submission</p>
+          <p class="mt-2 text-xl font-semibold">By [Your Name]</p>
+        </div>
+      </div>
+
+      <!-- Slide 2: Executive Summary -->
+      <div class="slide bg-white">
+        <div class="slide-content">
+          <h2
+            class="text-4xl font-bold text-blue-900 mb-8 border-b-4 border-blue-200 pb-4"
+          >
+            Executive Summary
+          </h2>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left"
+          >
+            <div
+              class="bg-blue-50 p-6 rounded-lg shadow-md border-l-4 border-blue-500"
+            >
+              <h3 class="text-xl font-bold text-blue-900 mb-2">The Problem</h3>
+              <p class="text-gray-700">
+                Nearly **50% of flights** from ORD depart late, driven by
+                inconsistent, experience-based resource planning.
+              </p>
+            </div>
+            <div
+              class="bg-sky-50 p-6 rounded-lg shadow-md border-l-4 border-sky-500"
+            >
+              <h3 class="text-xl font-bold text-sky-900 mb-2">Our Solution</h3>
+              <p class="text-gray-700">
+                A daily **Flight Difficulty Score** that systematically ranks
+                every flight by its operational complexity.
+              </p>
+            </div>
+            <div
+              class="bg-blue-50 p-6 rounded-lg shadow-md border-l-4 border-blue-500"
+            >
+              <h3 class="text-xl font-bold text-blue-900 mb-2">Key Finding</h3>
+              <p class="text-gray-700">
+                The primary drivers of difficulty are **extreme ground time
+                pressure** and high volumes of **transfer baggage**.
+              </p>
+            </div>
+            <div
+              class="bg-sky-50 p-6 rounded-lg shadow-md border-l-4 border-sky-500"
+            >
+              <h3 class="text-xl font-bold text-sky-900 mb-2">
+                Top Recommendation
+              </h3>
+              <p class="text-gray-700">
+                Proactively allocate specialized ground crews to the **top 5% of
+                'Difficult' flights** each day, starting with the STL route.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3: Key Findings -->
+      <div class="slide bg-gray-50">
+        <div class="slide-content">
+          <h2
+            class="text-4xl font-bold text-blue-900 mb-12 border-b-4 border-blue-200 pb-4"
+          >
+            Key Findings from the Data
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+              <p class="text-6xl font-extrabold text-sky-600">49.7%</p>
+              <h3 class="mt-4 text-xl font-semibold text-gray-800">
+                Flights Depart Late
+              </h3>
+              <p class="mt-2 text-gray-600">
+                With an average delay of **21.2 minutes**, widespread delays
+                impact the entire operation.
+              </p>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+              <p class="text-6xl font-extrabold text-blue-800">621</p>
+              <h3 class="mt-4 text-xl font-semibold text-gray-800">
+                Flights Face a Bottleneck
+              </h3>
+              <p class="mt-2 text-gray-600">
+                Scheduled with less than minimum turnaround time, putting them
+                at risk of delay from the start.
+              </p>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+              <p class="text-6xl font-extrabold text-sky-600">~3 : 1</p>
+              <h3 class="mt-4 text-xl font-semibold text-gray-800">
+                Complex Transfer Hub
+              </h3>
+              <p class="mt-2 text-gray-600">
+                The high ratio of transfer bags to checked bags highlights
+                immense pressure on baggage handling.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4: The Solution -->
+      <div class="slide bg-white">
+        <div class="slide-content">
+          <h2
+            class="text-4xl font-bold text-blue-900 mb-6 border-b-4 border-blue-200 pb-4"
+          >
+            Our Solution: The Flight Difficulty Score
+          </h2>
+          <p class="text-lg text-gray-600 mb-8 max-w-4xl">
+            We developed a weighted scoring model to quantify operational
+            complexity. The score is calculated daily, allowing for dynamic
+            resource allocation.
+          </p>
+          <div class="overflow-x-auto rounded-lg shadow-md">
+            <table class="w-full text-left text-gray-700">
+              <thead class="table-header text-sm uppercase">
+                <tr>
+                  <th class="table-cell w-1/4">Feature</th>
+                  <th class="table-cell w-1/6">Weight</th>
+                  <th class="table-cell">Rationale</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="bg-white">
+                  <td class="table-cell font-semibold">Ground Time Pressure</td>
+                  <td class="table-cell font-bold text-blue-700">30%</td>
+                  <td class="table-cell">
+                    Our EDA revealed this as a significant and direct
+                    operational constraint.
+                  </td>
+                </tr>
+                <tr class="bg-gray-50">
+                  <td class="table-cell font-semibold">Transfer Bag Ratio</td>
+                  <td class="table-cell font-bold text-blue-700">20%</td>
+                  <td class="table-cell">
+                    Reflects ORD's complexity as a major hub and the labor
+                    required.
+                  </td>
+                </tr>
+                <tr class="bg-white">
+                  <td class="table-cell font-semibold">SSR Count</td>
+                  <td class="table-cell font-bold text-blue-700">15%</td>
+                  <td class="table-cell">
+                    Accounts for the extra time and coordination needed for
+                    passenger assistance.
+                  </td>
+                </tr>
+                <tr class="bg-gray-50">
+                  <td class="table-cell font-semibold">
+                    Passenger Load Factor
+                  </td>
+                  <td class="table-cell font-bold text-blue-700">15%</td>
+                  <td class="table-cell">
+                    Fuller planes require more time for boarding and deplaning.
+                  </td>
+                </tr>
+                <tr class="bg-white">
+                  <td class="table-cell font-semibold">Hot Transfer Bags</td>
+                  <td class="table-cell font-bold text-blue-700">10%</td>
+                  <td class="table-cell">
+                    These time-sensitive bags add an extra layer of urgency and
+                    complexity.
+                  </td>
+                </tr>
+                <tr class="bg-gray-50">
+                  <td class="table-cell font-semibold">
+                    Child & Lap Child Count
+                  </td>
+                  <td class="table-cell font-bold text-blue-700">10%</td>
+                  <td class="table-cell">
+                    Accounts for additional boarding time and family needs.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 5: Deep Dive: STL -->
+      <div class="slide bg-gray-50">
+        <div class="slide-content">
+          <h2
+            class="text-4xl font-bold text-blue-900 mb-8 border-b-4 border-blue-200 pb-4"
+          >
+            Analysis Deep Dive: St. Louis (STL)
+          </h2>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h3 class="text-2xl font-bold text-gray-800 mb-4">
+                Top 10 Difficult Destinations
+              </h3>
+              <table
+                class="w-full text-left rounded-lg shadow-md overflow-hidden"
+              >
+                <thead class="table-header text-sm">
+                  <tr>
+                    <th class="table-cell">Airport</th>
+                    <th class="table-cell"># of 'Difficult' Flights</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="bg-sky-200 font-bold">
+                    <td class="table-cell">STL</td>
+                    <td class="table-cell">88</td>
+                  </tr>
+                  <tr class="bg-white">
+                    <td class="table-cell">DTW</td>
+                    <td class="table-cell">54</td>
+                  </tr>
+                  <tr class="bg-gray-50">
+                    <td class="table-cell">GRR</td>
+                    <td class="table-cell">53</td>
+                  </tr>
+                  <tr class="bg-white">
+                    <td class="table-cell">DSM</td>
+                    <td class="table-cell">53</td>
+                  </tr>
+                  <tr class="bg-gray-50">
+                    <td class="table-cell">MSP</td>
+                    <td class="table-cell">51</td>
+                  </tr>
+                  <tr class="bg-white">
+                    <td class="table-cell">DAY</td>
+                    <td class="table-cell">51</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+              <h3 class="text-2xl font-bold text-blue-900 mb-4">
+                The Story: Why STL is So Difficult
+              </h3>
+              <p class="text-lg text-gray-600 mb-6">
+                Flights to St. Louis are **44% more delayed** than the airport
+                average. Our analysis reveals two clear reasons why:
+              </p>
+              <div class="flex items-center gap-6">
+                <div class="text-center">
+                  <p class="text-6xl font-extrabold text-red-600">-51%</p>
+                  <p class="mt-2 text-gray-700 font-semibold">
+                    Less Ground Time Buffer
+                  </p>
+                </div>
+                <div class="text-center">
+                  <p class="text-6xl font-extrabold text-orange-500">+50%</p>
+                  <p class="mt-2 text-gray-700 font-semibold">
+                    More Transfer Bags
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 6: Actionable Recommendations -->
+      <div class="slide bg-white">
+        <div class="slide-content">
+          <h2
+            class="text-4xl font-bold text-blue-900 mb-10 border-b-4 border-blue-200 pb-4"
+          >
+            Actionable Recommendations
+          </h2>
+          <div class="space-y-8">
+            <div class="flex gap-6 items-start">
+              <div
+                class="flex-shrink-0 bg-blue-100 text-blue-800 rounded-full p-3"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-8 w-8"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold text-gray-800">
+                  1. Deploy a 'Turnaround Taskforce' for STL
+                </h3>
+                <p class="mt-2 text-lg text-gray-600 max-w-3xl">
+                  **Action:** For the top 5 daily 'Difficult' flights to STL,
+                  pre-assign an expanded ground crew to guarantee the aircraft
+                  is ready for boarding ahead of schedule, directly countering
+                  the **-51% ground time pressure**.
+                </p>
+              </div>
+            </div>
+            <div class="flex gap-6 items-start">
+              <div
+                class="flex-shrink-0 bg-sky-100 text-sky-800 rounded-full p-3"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-8 w-8"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold text-gray-800">
+                  2. Implement a 'Priority Transfer' Protocol
+                </h3>
+                <p class="mt-2 text-lg text-gray-600 max-w-3xl">
+                  **Action:** For STL-bound flights, baggage handlers should
+                  prioritize sorting and loading transfer bags first. Since
+                  these flights handle **50% more transfers**, this targeted
+                  approach will reduce mishandled bags and departure delays.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 7: Conclusion & Business Impact -->
+      <div class="slide bg-gray-50">
+        <div class="slide-content">
+          <h2
+            class="text-4xl font-bold text-blue-900 mb-10 border-b-4 border-blue-200 pb-4"
+          >
+            Conclusion & Business Impact
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+              <h3 class="text-2xl font-bold text-blue-800 mb-3">
+                From Reactive to Proactive
+              </h3>
+              <p class="text-gray-600">
+                The score allows teams to anticipate and plan for difficulty
+                **before** it happens, moving resources where they'll be needed
+                most.
+              </p>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+              <h3 class="text-2xl font-bold text-blue-800 mb-3">
+                Data-Driven Decisions
+              </h3>
+              <p class="text-gray-600">
+                This system replaces inconsistent guesswork with a consistent,
+                scalable, and fair method for resource allocation across the
+                airport.
+              </p>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+              <h3 class="text-2xl font-bold text-blue-800 mb-3">
+                Expected Outcome
+              </h3>
+              <p class="text-gray-600">
+                By targeting the most difficult flights, we expect to see
+                improved on-time performance, more efficient use of resources,
+                and reduced employee stress.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 8: Thank You -->
+      <div class="slide bg-gradient-to-br from-blue-900 to-sky-700 text-white">
+        <div class="slide-content text-center">
+          <h2 class="text-7xl font-black">Thank You</h2>
+          <p class="mt-6 text-4xl font-light text-sky-200">Q&A</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div
+      id="slideCounter"
+      class="fixed bottom-4 left-6 text-sm font-semibold text-gray-600 bg-white/50 backdrop-blur-sm px-3 py-1 rounded-full"
+    ></div>
+    <div class="fixed bottom-4 right-6 flex gap-2">
+      <button
+        id="prevBtn"
+        class="bg-blue-600 text-white rounded-full p-3 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 shadow-lg transition-transform transform active:scale-95"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </button>
+      <button
+        id="nextBtn"
+        class="bg-blue-600 text-white rounded-full p-3 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 shadow-lg transition-transform transform active:scale-95"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <script>
+      const slideContainer = document.getElementById("slideContainer");
+      const slides = document.querySelectorAll(".slide");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      const slideCounter = document.getElementById("slideCounter");
+
+      let currentSlide = 0;
+      const totalSlides = slides.length;
+
+      function updateSlide(index) {
+        slideContainer.scrollLeft = index * window.innerWidth;
+        currentSlide = index;
+        updateCounter();
+      }
+
+      function updateCounter() {
+        slideCounter.textContent = `Slide ${
+          currentSlide + 1
+        } of ${totalSlides}`;
+      }
+
+      nextBtn.addEventListener("click", () => {
+        let nextIndex = (currentSlide + 1) % totalSlides;
+        updateSlide(nextIndex);
+      });
+
+      prevBtn.addEventListener("click", () => {
+        let prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateSlide(prevIndex);
+      });
+
+      // Keyboard navigation
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") {
+          nextBtn.click();
+        } else if (e.key === "ArrowLeft") {
+          prevBtn.click();
+        }
+      });
+
+      // Update current slide based on scroll position (for manual scroll)
+      slideContainer.addEventListener("scroll", () => {
+        currentSlide = Math.round(
+          slideContainer.scrollLeft / window.innerWidth
+        );
+        updateCounter();
+      });
+
+      // Initial setup
+      updateCounter();
+    </script>
+  </body>
+</html>
